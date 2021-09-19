@@ -1,7 +1,4 @@
 package corona.data;
-
-import javafx.util.Pair;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;

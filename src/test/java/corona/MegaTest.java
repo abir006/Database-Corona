@@ -1,10 +1,9 @@
-package extra;
+package corona;
 
 import corona.business.Employee;
 import corona.business.Lab;
 import corona.business.ReturnValue;
 import corona.business.Vaccine;
-import corona.Solution;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,73 +13,74 @@ import static org.junit.Assert.assertEquals;
 
 
 // Written by: Joseph Hakim
-// Extended/modified by Tzuriel Mazuz
-public class LargeTest extends AbstractTest{
-	@Test
-	public void SimpleUnitsTest() {
-		Solution.clearTables();
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(8788);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(30);
-    	a.setUnits(100);
-    	ReturnValue ret = Solution.addVaccine(a);
+// Edited by: Tsuriel Mazuz
+// Other additions: Guy Carmi
+public class MegaTest extends AbstractTest{
+    @Test
+    public void SimpleUnitsTest() {
+        Solution.clearTables();
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(8788);
+        a.setName("corona Vaccine");
+        a.setProductivity(30);
+        a.setUnits(100);
+        ReturnValue ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
-    	Vaccine b = new Vaccine();
-    	b.setCost(200);
-    	b.setId(15357);
-    	b.setName("corona Vaccine");
-    	b.setProductivity(30);
-    	b.setUnits(250);
-    	ret = Solution.addVaccine(b);
+
+        Vaccine b = new Vaccine();
+        b.setCost(200);
+        b.setId(15357);
+        b.setName("corona Vaccine");
+        b.setProductivity(30);
+        b.setUnits(250);
+        ret = Solution.addVaccine(b);
         assertEquals(OK, ret);
-        
+
         Integer ExpectedResult = 350;
         Integer ReceivedResult = 0;
         ReceivedResult = Solution.getTotalNumberOfWorkingVaccines();
         assertEquals(ExpectedResult, ReceivedResult);
-        
+
         ret = Solution.vaccineSold(8788, 50);
         assertEquals(OK, ret);
         ExpectedResult = 300;
         ReceivedResult = Solution.getTotalNumberOfWorkingVaccines();
         assertEquals(ExpectedResult, ReceivedResult);
-        
+
         Solution.vaccineProduced(15357, 700);
         assertEquals(OK, ret);
-        
+
         ExpectedResult = 50;
         ReceivedResult = Solution.getTotalNumberOfWorkingVaccines();
         assertEquals(ExpectedResult, ReceivedResult);
-        
+
         Solution.vaccineProduced(8788, 700);
         assertEquals(OK, ret);
-        
+
         ExpectedResult = 750;
         ReceivedResult = Solution.getTotalNumberOfWorkingVaccines();
         assertEquals(ExpectedResult, ReceivedResult);
-        
+
         Solution.vaccineProduced(8788, 900);
         assertEquals(OK, ret);
-        
+
         ExpectedResult = 0;
         ReceivedResult = Solution.getTotalNumberOfWorkingVaccines();
         assertEquals(ExpectedResult, ReceivedResult);
-        
+
         Solution.deleteVaccine(a);
         assertEquals(OK, ret);
-        
+
         Solution.deleteVaccine(b);
         assertEquals(OK, ret);
-        
-        
-	}
+
+
+    }
+
     @Test
-    public void simpleTestLab()
-    {
-		Solution.clearTables();
+    public void simpleTestLab() {
+        Solution.clearTables();
         Lab a = new Lab();
         a.setId(1);
         a.setName("Technion");
@@ -88,9 +88,9 @@ public class LargeTest extends AbstractTest{
         a.setIsActive(true);
         ReturnValue ret = Solution.addLab(a);
         assertEquals(OK, ret);
-        
-    	Lab resultLab = Solution.getLabProfile(1);
-        
+
+        Lab resultLab = Solution.getLabProfile(1);
+
         Lab b = new Lab();
         b.setId(100);
         b.setName("Technion");
@@ -98,7 +98,7 @@ public class LargeTest extends AbstractTest{
         b.setIsActive(true);
         ret = Solution.addLab(b);
         assertEquals(OK, ret);
-        
+
         Lab c = new Lab();
         c.setId(200);
         c.setName("Technion");
@@ -106,61 +106,60 @@ public class LargeTest extends AbstractTest{
         c.setIsActive(true);
         ret = Solution.addLab(c);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(b);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(c);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(a);
         assertEquals(NOT_EXISTS, ret);
-         
+
     }
-    
+
     @Test
-    public void EmployeeTest()
-    {
-		Solution.clearTables();
-    	Employee a = new Employee();
-    	a.setId(1);
-    	a.setName("joseph");
-    	a.setCity("Nazareth");
+    public void EmployeeTest() {
+        Solution.clearTables();
+        Employee a = new Employee();
+        a.setId(1);
+        a.setName("joseph");
+        a.setCity("Nazareth");
         ReturnValue ret = Solution.addEmployee(a);
         assertEquals(OK, ret);
-    	Employee b = new Employee();
-    	b.setId(2);
-    	b.setName("Waseem");
-    	b.setCity("Israel");
+        Employee b = new Employee();
+        b.setId(2);
+        b.setName("Waseem");
+        b.setCity("Israel");
         ret = Solution.addEmployee(b);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(b);
         assertEquals(OK, ret);
     }
-    
+
     @Test
     public void AddWorkToEmployee() {
-		Solution.clearTables();
-    	Employee a = new Employee();
-    	a.setId(1);
-    	a.setName("joseph");
-    	a.setCity("Nazareth");
+        Solution.clearTables();
+        Employee a = new Employee();
+        a.setId(1);
+        a.setName("joseph");
+        a.setCity("Nazareth");
         ReturnValue ret = Solution.addEmployee(a);
         assertEquals(OK, ret);
-    	Employee b = new Employee();
-    	b.setId(2);
-    	b.setName("Waseem");
-    	b.setCity("Israel");
+        Employee b = new Employee();
+        b.setId(2);
+        b.setName("Waseem");
+        b.setCity("Israel");
         ret = Solution.addEmployee(b);
         assertEquals(OK, ret);
-        
+
         Lab bl = new Lab();
         bl.setId(100);
         bl.setName("Technion");
@@ -168,7 +167,7 @@ public class LargeTest extends AbstractTest{
         bl.setIsActive(true);
         ret = Solution.addLab(bl);
         assertEquals(OK, ret);
-        
+
         Lab cl = new Lab();
         cl.setId(200);
         cl.setName("Technion");
@@ -176,42 +175,41 @@ public class LargeTest extends AbstractTest{
         cl.setIsActive(true);
         ret = Solution.addLab(cl);
         assertEquals(OK, ret);
-        
-        
-    	ret = Solution.employeeJoinLab(1,100,500);
+
+
+        ret = Solution.employeeJoinLab(1,100,500);
         assertEquals(OK, ret);
-    	ret = Solution.employeeJoinLab(1,200,500);
+        ret = Solution.employeeJoinLab(1,200,500);
         assertEquals(OK, ret);
-    	ret = Solution.employeeJoinLab(2,200,7000);
+        ret = Solution.employeeJoinLab(2,200,7000);
         assertEquals(OK, ret);
-    	ret = Solution.employeeLeftLab(200,2);
+        ret = Solution.employeeLeftLab(200,2);
         assertEquals(OK, ret);
-    	ret = Solution.employeeLeftLab(200,2);
+        ret = Solution.employeeLeftLab(200,2);
         assertEquals(NOT_EXISTS, ret);
-        
+
         ret = Solution.deleteLab(cl);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeLeftLab(200,1);
+
+        ret = Solution.employeeLeftLab(200,1);
         assertEquals(NOT_EXISTS, ret);
-        
-    	ret = Solution.employeeLeftLab(100,1);
+
+        ret = Solution.employeeLeftLab(100,1);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(bl);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(b);
         assertEquals(OK, ret);
     }
 
-    
-    @Test 
+    @Test
     public void CascadeTestForLab() {
-		Solution.clearTables();
+        Solution.clearTables();
         Lab a = new Lab();
         a.setId(50);
         a.setName("Technion");
@@ -219,75 +217,74 @@ public class LargeTest extends AbstractTest{
         a.setIsActive(true);
         ReturnValue ret = Solution.addLab(a);
         assertEquals(OK, ret);
-        
-    	Employee empa = new Employee();
-    	empa.setId(40);
-    	empa.setName("Joseph");
-    	empa.setCity("Israel");
+
+        Employee empa = new Employee();
+        empa.setId(40);
+        empa.setName("Joseph");
+        empa.setCity("Israel");
         ret = Solution.addEmployee(empa);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeJoinLab(40,50,6000);
+
+        ret = Solution.employeeJoinLab(40,50,6000);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeLeftLab(50,40);
+
+        ret = Solution.employeeLeftLab(50,40);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeJoinLab(40,50,6000);
+
+        ret = Solution.employeeJoinLab(40,50,6000);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteLab(a);
-        assertEquals(OK, ret);  
-        
+        assertEquals(OK, ret);
+
         ret = Solution.deleteEmployee(empa);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeLeftLab(50,40);
+
+        ret = Solution.employeeLeftLab(50,40);
         assertEquals(NOT_EXISTS, ret);
-        
+
     }
-    
-    
+
     @Test
     public void VaccineSellingTest() {
-		Solution.clearTables();
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(1);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(30);
-    	a.setUnits(100);
-    	ReturnValue ret = Solution.addVaccine(a);
+        Solution.clearTables();
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(1);
+        a.setName("corona Vaccine");
+        a.setProductivity(30);
+        a.setUnits(100);
+        ReturnValue ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
+
         Vaccine ReturnedVaccine = Solution.getVaccineProfile(1);
         assertEquals(true,a.equals(ReturnedVaccine));
 
         ret = Solution.vaccineSold(1, 50);
         assertEquals(OK, ret);
         System.out.println("We just sold 50 unit of Vaccine ID = 1 , ret = " + ret);
-        
+
         ReturnedVaccine = Solution.getVaccineProfile(1);
         a.setUnits(50);
         a.setProductivity(45);
         a.setCost(400);
         assertEquals(true,a.equals(ReturnedVaccine));
-        
+
         ReturnedVaccine =  Solution.getVaccineProfile(5878784); //non existant vaccine
-        
+
         Vaccine badvaccine = Vaccine.badVaccine();
         assertEquals(true,badvaccine.equals(ReturnedVaccine));
-        
+
         Solution.getIncomeFromVaccine(1);
-        
+
         ret = Solution.vaccineSold(2, 50);
         System.out.println("We just sold 50 unit of Vaccine ID = 2 (not available) , ret = " + ret);
         assertEquals(NOT_EXISTS, ret);
-        
+
         ret = Solution.vaccineSold(1, 51);
         System.out.println("We just sold 51 unit of Vaccine ID = 1 (not enough stock) , ret = " + ret);
         assertEquals(BAD_PARAMS, ret);
-        
+
         Integer CurrIncome = Solution.getIncomeFromVaccine(1);
         Integer CurrExpectedResult = 10000;
         assertEquals(CurrExpectedResult, CurrIncome);
@@ -295,7 +292,7 @@ public class LargeTest extends AbstractTest{
         System.out.println("We just sold 5 unit of Vaccine ID = 1 (enough stock) , ret = " + ret);
         Solution.getVaccineProfile(1);
         assertEquals(OK, ret);
-        
+
         CurrIncome = Solution.getIncomeFromVaccine(1);
         CurrExpectedResult = 10000 + 400*5;
         assertEquals(CurrExpectedResult, CurrIncome);
@@ -303,44 +300,44 @@ public class LargeTest extends AbstractTest{
         System.out.println("We just sold 5 unit of Vaccine ID = 1 (enough stock) , ret = " + ret);
         Solution.getVaccineProfile(1);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineSold(1, 5);
         System.out.println("We just sold 5 unit of Vaccine ID = 1 (enough stock) , ret = " + ret);
         Solution.getVaccineProfile(1);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineSold(1, 5);
         System.out.println("We just sold 5 unit of Vaccine ID = 1 (enough stock) , ret = " + ret);
         Solution.getVaccineProfile(1);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineProduced(1, 5);
         System.out.println("We just produced 5 unit of Vaccine ID = 1 , ret = " + ret);
         Solution.getVaccineProfile(1);
-        
+
         ret = Solution.vaccineProduced(3, 5);
         System.out.println("We just produced 5 unit of Vaccine ID = 3 (doesn't exist) , ret = " + ret);
         Solution.getVaccineProfile(1);
-        
+
         ret = Solution.deleteVaccine(a);
         assertEquals(OK, ret);
         ret = Solution.deleteVaccine(a);
         assertEquals(NOT_EXISTS, ret);
-        
+
     }
-    
-    @Test 
+
+    @Test
     public void isLabPopularTest(){
-		Solution.clearTables();
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(700);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(30);
-    	a.setUnits(100);
-    	ReturnValue ret = Solution.addVaccine(a);
+        Solution.clearTables();
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(700);
+        a.setName("corona Vaccine");
+        a.setProductivity(30);
+        a.setUnits(100);
+        ReturnValue ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
+
         Lab b = new Lab();
         b.setId(90);
         b.setName("Technion");
@@ -348,7 +345,7 @@ public class LargeTest extends AbstractTest{
         b.setIsActive(true);
         ret = Solution.addLab(b);
         assertEquals(OK, ret);
-        
+
         ret = Solution.labProduceVaccine(700, 90);
         assertEquals(OK, ret);
 
@@ -356,107 +353,107 @@ public class LargeTest extends AbstractTest{
         Boolean CurrReceivedResult;
         CurrReceivedResult = Solution.isLabPopular(90);
         //assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	Vaccine c = new Vaccine();
-    	c.setCost(200);
-    	c.setId(720);
-    	c.setName("corona Vaccine");
-    	c.setProductivity(10);
-    	c.setUnits(100);
-    	ret = Solution.addVaccine(c);
-        assertEquals(OK, ret);
-        
-        
-        
-        ret = Solution.labProduceVaccine(720, 90);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = false;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.labStoppedProducingVaccine(90, 720);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = true;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.labProduceVaccine(720, 90);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = false;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.labStoppedProducingVaccine(90, 720);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = true;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.labProduceVaccine(720, 90);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = false;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.deleteVaccine(c);
-        assertEquals(OK, ret);
-        
-        CurrExpectedResult = true;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
+        Vaccine c = new Vaccine();
+        c.setCost(200);
+        c.setId(720);
+        c.setName("corona Vaccine");
+        c.setProductivity(10);
+        c.setUnits(100);
         ret = Solution.addVaccine(c);
         assertEquals(OK, ret);
-       
-        
-        CurrExpectedResult = true;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
+
+
         ret = Solution.labProduceVaccine(720, 90);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = false;
         CurrReceivedResult = Solution.isLabPopular(90);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.deleteLab(b);
+
+        ret = Solution.labStoppedProducingVaccine(90, 720);
         assertEquals(OK, ret);
-        
-        CurrExpectedResult = false;
-        CurrReceivedResult = Solution.isLabPopular(90);
-        assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.addLab(b);
-        assertEquals(OK, ret);
-        
+
         CurrExpectedResult = true;
         CurrReceivedResult = Solution.isLabPopular(90);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-        ret = Solution.deleteLab(b);
+
+        ret = Solution.labProduceVaccine(720, 90);
         assertEquals(OK, ret);
-        
+
+        CurrExpectedResult = false;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.labStoppedProducingVaccine(90, 720);
+        assertEquals(OK, ret);
+
+        CurrExpectedResult = true;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.labProduceVaccine(720, 90);
+        assertEquals(OK, ret);
+
+        CurrExpectedResult = false;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
         ret = Solution.deleteVaccine(c);
         assertEquals(OK, ret);
-        
+
+        CurrExpectedResult = true;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.addVaccine(c);
+        assertEquals(OK, ret);
+
+
+        CurrExpectedResult = true;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.labProduceVaccine(720, 90);
+        assertEquals(OK, ret);
+
+        CurrExpectedResult = false;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.deleteLab(b);
+        assertEquals(OK, ret);
+
+        CurrExpectedResult = false;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.addLab(b);
+        assertEquals(OK, ret);
+
+        CurrExpectedResult = true;
+        CurrReceivedResult = Solution.isLabPopular(90);
+        assertEquals(CurrExpectedResult, CurrReceivedResult);
+
+        ret = Solution.deleteLab(b);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteVaccine(c);
+        assertEquals(OK, ret);
+
         ret = Solution.deleteVaccine(a);
         assertEquals(OK, ret);
     }
-    
+
     @Test
     public void ClearTables() {
-    	Solution.clearTables();
+        Solution.clearTables();
     }
-    
+
     @Test
     public void WagesTest() {
-		Solution.clearTables();
+        Solution.clearTables();
         Lab b = new Lab();
         b.setId(222);
         b.setName("Technion");
@@ -464,41 +461,41 @@ public class LargeTest extends AbstractTest{
         b.setIsActive(true);
         ReturnValue ret = Solution.addLab(b);
         assertEquals(OK, ret);
-        
-    	Employee a = new Employee();
-    	a.setId(1700);
-    	a.setName("joseph");
-    	a.setCity("Nazareth");
+
+        Employee a = new Employee();
+        a.setId(1700);
+        a.setName("joseph");
+        a.setCity("Nazareth");
         ret = Solution.addEmployee(a);
         assertEquals(OK, ret);
-        
-    	Employee c = new Employee();
-    	c.setId(1600);
-    	c.setName("Waseem");
-    	c.setCity("Israel");
+
+        Employee c = new Employee();
+        c.setId(1600);
+        c.setName("Waseem");
+        c.setCity("Israel");
         ret = Solution.addEmployee(c);
         assertEquals(OK, ret);
-        
-        
+
+
         Integer CurrExpectedResult = 0;
         Integer CurrReceivedResult;
         CurrReceivedResult = Solution.getTotalWages(222);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	ret = Solution.employeeJoinLab(1700,222,6000);
+
+        ret = Solution.employeeJoinLab(1700,222,6000);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getTotalWages(222);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	ret = Solution.employeeJoinLab(1600,222,1000);
+
+        ret = Solution.employeeJoinLab(1600,222,1000);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 6000+1000;
         CurrReceivedResult = Solution.getTotalWages(222);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         Lab d = new Lab();
         d.setId(333);
         d.setName("Technion");
@@ -506,108 +503,108 @@ public class LargeTest extends AbstractTest{
         d.setIsActive(true);
         ret = Solution.addLab(d);
         assertEquals(OK, ret);
-        
-    	ret = Solution.employeeJoinLab(1600,333,1000);
+
+        ret = Solution.employeeJoinLab(1600,333,1000);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 6000+1000;
         CurrReceivedResult = Solution.getTotalWages(222);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getTotalWages(333);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	ret = Solution.employeeJoinLab(1700,333,6000);
+
+        ret = Solution.employeeJoinLab(1700,333,6000);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 6000+1000;
         CurrReceivedResult = Solution.getTotalWages(333);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-            
-    	ret = Solution.employeeLeftLab(222,1600);
+
+        ret = Solution.employeeLeftLab(222,1600);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getTotalWages(222);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         CurrExpectedResult = 6000+1000;
         CurrReceivedResult = Solution.getTotalWages(333);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.deleteLab(d);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getTotalWages(333);
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.deleteLab(b);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(c);
         assertEquals(OK, ret);
 
     }
-    
+
     @Test
     public void BestLabCheck() {
-		Solution.clearTables();
+        Solution.clearTables();
         Lab b = new Lab();
         b.setId(9785);
         b.setName("Technion");
         b.setCity("Haifa");
         b.setIsActive(true);
         ReturnValue ret = Solution.addLab(b);
-        assertEquals(OK, ret);        
-        
+        assertEquals(OK, ret);
+
         Integer CurrExpectedResult = 0;
         Integer CurrReceivedResult;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	Employee a = new Employee();
-    	a.setId(1700);
-    	a.setName("joseph");
-    	a.setCity("Nazareth");
+
+        Employee a = new Employee();
+        a.setId(1700);
+        a.setName("joseph");
+        a.setCity("Nazareth");
         ret = Solution.addEmployee(a);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	Employee c = new Employee();
-    	c.setId(1600);
-    	c.setName("waseem");
-    	c.setCity("Haifa");
+
+        Employee c = new Employee();
+        c.setId(1600);
+        c.setName("waseem");
+        c.setCity("Haifa");
         ret = Solution.addEmployee(c);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         Lab d = new Lab();
         d.setId(9000);
         d.setName("Technion");
         d.setCity("Karmel");
         d.setIsActive(true);
         ret = Solution.addLab(d);
-        assertEquals(OK, ret);  
-        
-    	Employee e = new Employee();
-    	e.setId(1800);
-    	e.setName("george");
-    	e.setCity("Karmel");
+        assertEquals(OK, ret);
+
+        Employee e = new Employee();
+        e.setId(1800);
+        e.setName("george");
+        e.setCity("Karmel");
         ret = Solution.addEmployee(e);
         assertEquals(OK, ret);
 
@@ -615,11 +612,11 @@ public class LargeTest extends AbstractTest{
         CurrExpectedResult = 9000;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
-    	Employee f = new Employee();
-    	f.setId(1900);
-    	f.setName("george");
-    	f.setCity("Haifa");
+
+        Employee f = new Employee();
+        f.setId(1900);
+        f.setName("george");
+        f.setCity("Haifa");
         ret = Solution.addEmployee(f);
         assertEquals(OK, ret);
 
@@ -628,17 +625,17 @@ public class LargeTest extends AbstractTest{
         CurrExpectedResult = 9785;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         Solution.deleteEmployee(f);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 9000;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.addEmployee(f);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 9000;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
@@ -647,110 +644,110 @@ public class LargeTest extends AbstractTest{
         CurrExpectedResult = 9785;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         Solution.deleteLab(b);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 9000;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         Solution.deleteLab(d);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.deleteEmployee(f);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(e);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(c);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteEmployee(a);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = 0;
         CurrReceivedResult = Solution.getBestLab();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
     }
-    
-    @Test 
+
+    @Test
     public void mostpopularcitytest() {
-		Solution.clearTables();
+        Solution.clearTables();
         Lab b = new Lab();
         b.setId(9785);
         b.setName("Technion");
         b.setCity("Nazareth");
         b.setIsActive(true);
         ReturnValue ret = Solution.addLab(b);
-        assertEquals(OK, ret);     
-        
+        assertEquals(OK, ret);
+
         Lab d = new Lab();
         d.setId(9000);
         d.setName("Technion");
         d.setCity("Nesher");
         d.setIsActive(true);
         ret = Solution.addLab(d);
-        assertEquals(OK, ret);  
-        
-    	Employee f = new Employee();
-    	f.setId(1900);
-    	f.setName("george");
-    	f.setCity("Haifa");
+        assertEquals(OK, ret);
+
+        Employee f = new Employee();
+        f.setId(1900);
+        f.setName("george");
+        f.setCity("Haifa");
         ret = Solution.addEmployee(f);
         assertEquals(OK, ret);
-        
-    	Employee e = new Employee();
-    	e.setId(1800);
-    	e.setName("george");
-    	e.setCity("Karmel");
+
+        Employee e = new Employee();
+        e.setId(1800);
+        e.setName("george");
+        e.setCity("Karmel");
         ret = Solution.addEmployee(e);
         assertEquals(OK, ret);
-        
-        
-    	Employee c = new Employee();
-    	c.setId(1600);
-    	c.setName("waseem");
-    	c.setCity("Haifa");
+
+
+        Employee c = new Employee();
+        c.setId(1600);
+        c.setName("waseem");
+        c.setCity("Haifa");
         ret = Solution.addEmployee(c);
         assertEquals(OK, ret);
-        
+
         String CurrExpectedResult = "";
         String CurrReceivedResult;
         CurrReceivedResult = Solution.getMostPopularCity();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.employeeJoinLab(1800, 9000, 50);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = "Karmel";
         CurrReceivedResult = Solution.getMostPopularCity();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.employeeJoinLab(1600, 9785, 50);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = "Karmel";
         CurrReceivedResult = Solution.getMostPopularCity();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
-        
+
         ret = Solution.employeeJoinLab(1600, 9000, 50);
         assertEquals(OK, ret);
-        
+
         CurrExpectedResult = "Haifa";
         CurrReceivedResult = Solution.getMostPopularCity();
         assertEquals(CurrExpectedResult, CurrReceivedResult);
     }
-    
+
     @Test
     public void popularlabstest() {
-		Solution.clearTables();
+        Solution.clearTables();
         Lab b = new Lab();
         b.setId(9785);
         b.setName("Technion");
@@ -758,25 +755,25 @@ public class LargeTest extends AbstractTest{
         b.setIsActive(true);
         ReturnValue ret = Solution.addLab(b);
         assertEquals(OK, ret);
-        
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(8788);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(15);
-    	a.setUnits(100);
-    	ret = Solution.addVaccine(a);
+
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(8788);
+        a.setName("corona Vaccine");
+        a.setProductivity(15);
+        a.setUnits(100);
+        ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
-    	Vaccine c = new Vaccine();
-    	c.setCost(200);
-    	c.setId(15357);
-    	c.setName("corona Vaccine");
-    	c.setProductivity(30);
-    	c.setUnits(250);
-    	ret = Solution.addVaccine(c);
+
+        Vaccine c = new Vaccine();
+        c.setCost(200);
+        c.setId(15357);
+        c.setName("corona Vaccine");
+        c.setProductivity(30);
+        c.setUnits(250);
+        ret = Solution.addVaccine(c);
         assertEquals(OK, ret);
-        
+
         Lab d = new Lab();
         d.setId(9358);
         d.setName("Technion");
@@ -784,7 +781,7 @@ public class LargeTest extends AbstractTest{
         d.setIsActive(true);
         ret = Solution.addLab(d);
         assertEquals(OK, ret);
-        
+
         Lab f = new Lab();
         f.setId(6589);
         f.setName("Technion");
@@ -792,7 +789,7 @@ public class LargeTest extends AbstractTest{
         f.setIsActive(true);
         ret = Solution.addLab(f);
         assertEquals(OK, ret);
-        
+
         Lab g = new Lab();
         g.setId(2222);
         g.setName("Technion");
@@ -800,66 +797,66 @@ public class LargeTest extends AbstractTest{
         g.setIsActive(true);
         ret = Solution.addLab(g);
         assertEquals(OK, ret);
-        
+
         ArrayList<Integer> ExpectedArray = new ArrayList<>() ;
         ArrayList<Integer> ReceivedArray;
-        
+
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labProduceVaccine(15357, 9785);
+
+        ret = Solution.labProduceVaccine(15357, 9785);
         assertEquals(OK, ret);
-       
-        
+
+
         ExpectedArray.add(9785);
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labProduceVaccine(8788, 9785);
+
+        ret = Solution.labProduceVaccine(8788, 9785);
         assertEquals(OK, ret);
-        
+
         ExpectedArray.remove(0);
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labStoppedProducingVaccine(9785, 8788);
+
+        ret = Solution.labStoppedProducingVaccine(9785, 8788);
         assertEquals(OK, ret);
-        
+
         ExpectedArray.add(9785);
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labProduceVaccine(8788, 9785);
+
+        ret = Solution.labProduceVaccine(8788, 9785);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineSold(8788, 20);
         assertEquals(OK, ret);
-        
+
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labProduceVaccine(8788, 15357);
+
+        ret = Solution.labProduceVaccine(8788, 15357);
         assertEquals(NOT_EXISTS, ret);
-        
-    	ret = Solution.labProduceVaccine(8788, 9358);
+
+        ret = Solution.labProduceVaccine(8788, 9358);
         assertEquals(OK, ret);
-        
-    	ret = Solution.labProduceVaccine(8788, 6589);
+
+        ret = Solution.labProduceVaccine(8788, 6589);
         assertEquals(OK, ret);
-        
-    	ret = Solution.labProduceVaccine(8788, 2222);
+
+        ret = Solution.labProduceVaccine(8788, 2222);
         assertEquals(OK, ret);
-        
+
         ExpectedArray.remove(0);
         ExpectedArray.add(2222);
         ExpectedArray.add(6589);
         ExpectedArray.add(9358);
         ReceivedArray = Solution.getPopularLabs();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ret = Solution.labStoppedProducingVaccine(9358, 8788);
+
+        ret = Solution.labStoppedProducingVaccine(9358, 8788);
         assertEquals(OK, ret);
-        
+
         ExpectedArray.remove(2);
         ExpectedArray.add(9785);
         ReceivedArray = Solution.getPopularLabs();
@@ -873,52 +870,52 @@ public class LargeTest extends AbstractTest{
         assertEquals(OK, ret);
         ret = Solution.deleteLab(b);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteVaccine(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.deleteVaccine(c);
         assertEquals(OK, ret);
-        
+
     }
-    
-    @Test 
+
+    @Test
     public void getMostRatedVaccinesTest() {
-		Solution.clearTables();
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(12000);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(15);
-    	a.setUnits(100);
-        
+        Solution.clearTables();
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(12000);
+        a.setName("corona Vaccine");
+        a.setProductivity(15);
+        a.setUnits(100);
+
         ArrayList<Integer> ExpectedArray = new ArrayList<>() ;
         ArrayList<Integer> ReceivedArray;
         ReceivedArray = Solution.getMostRatedVaccines();
         assertEquals(ExpectedArray, ReceivedArray);
-        
-    	ReturnValue ret = Solution.addVaccine(a);
+
+        ReturnValue ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
+
         ExpectedArray.add(12000);
         ReceivedArray = Solution.getMostRatedVaccines();
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ret = Solution.deleteVaccine(a);
         assertEquals(OK, ret);
-        
+
     }
-    
+
     @Test
     public void CloseEmployeeTest() {
-		Solution.clearTables();
-    	Employee a = new Employee();
-    	a.setId(2500);
-    	a.setName("joseph");
-    	a.setCity("Nazareth");
+        Solution.clearTables();
+        Employee a = new Employee();
+        a.setId(2500);
+        a.setName("joseph");
+        a.setCity("Nazareth");
         ReturnValue ret = Solution.addEmployee(a);
         assertEquals(OK, ret);
-        
+
         Lab b = new Lab();
         b.setId(3500);
         b.setName("Technion");
@@ -926,14 +923,14 @@ public class LargeTest extends AbstractTest{
         b.setIsActive(true);
         ret = Solution.addLab(b);
         assertEquals(OK, ret);
-        
-    	Employee c = new Employee();
-    	c.setId(2600);
-    	c.setName("waseem");
-    	c.setCity("Haifa");
+
+        Employee c = new Employee();
+        c.setId(2600);
+        c.setName("waseem");
+        c.setCity("Haifa");
         ret = Solution.addEmployee(c);
         assertEquals(OK, ret);
-        
+
         Lab d = new Lab();
         d.setId(3600);
         d.setName("Technion");
@@ -941,7 +938,7 @@ public class LargeTest extends AbstractTest{
         d.setIsActive(true);
         ret = Solution.addLab(d);
         assertEquals(OK, ret);
-        
+
         Lab e = new Lab();
         e.setId(3700);
         e.setName("Technion");
@@ -949,15 +946,15 @@ public class LargeTest extends AbstractTest{
         e.setIsActive(true);
         ret = Solution.addLab(e);
         assertEquals(OK, ret);
-        
-    	Employee f = new Employee();
-    	f.setId(2700);
-    	f.setName("waseem");
-    	f.setCity("Haifa");
+
+        Employee f = new Employee();
+        f.setId(2700);
+        f.setName("waseem");
+        f.setCity("Haifa");
         ret = Solution.addEmployee(f);
         assertEquals(OK, ret);
-        
-        
+
+
         ArrayList<Integer> ExpectedArray = new ArrayList<>() ;
         ArrayList<Integer> ReceivedArray;
         ReceivedArray = Solution.getCloseEmployees(2501);
@@ -967,7 +964,7 @@ public class LargeTest extends AbstractTest{
         ExpectedArray.add(2600);
         ExpectedArray.add(2700);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
 
         ret = Solution.employeeJoinLab(2600, 3500, 2000); //2600 joined lab 3500
         assertEquals(OK,ret);
@@ -982,92 +979,235 @@ public class LargeTest extends AbstractTest{
         ExpectedArray.clear();
         ReceivedArray = Solution.getCloseEmployees(2500);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ReceivedArray = Solution.getCloseEmployees(2600);
         assertEquals(ExpectedArray, ReceivedArray);
-        
-        
+
+
         ret = Solution.employeeJoinLab(2500, 3500, 2000); //2500 joined lab 3500
         assertEquals(OK,ret);
-        
+
         ExpectedArray.add(2500);
         ReceivedArray = Solution.getCloseEmployees(2600);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ExpectedArray.remove(0);
         ExpectedArray.add(2600);
         ReceivedArray = Solution.getCloseEmployees(2500);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ret = Solution.employeeJoinLab(2700, 3600, 2000); //2700 joined lab 3600
         assertEquals(OK,ret);
-        
+
         ExpectedArray.remove(0);
         ExpectedArray.add(2600);
         ExpectedArray.add(2700);
         ReceivedArray = Solution.getCloseEmployees(2500);
         assertEquals(ExpectedArray, ReceivedArray);
-        
-        
+
+
         ExpectedArray.remove(0);
         ExpectedArray.remove(0);
-        
+
         //ExpectedArray is empty from here.
         ret = Solution.employeeJoinLab(2500, 3700, 2000); //2500 joined lab 3700
         assertEquals(OK,ret);
-        
+
         ReceivedArray = Solution.getCloseEmployees(2500);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ExpectedArray.add(2500);
         ReceivedArray = Solution.getCloseEmployees(2600);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
         ReceivedArray = Solution.getCloseEmployees(2700);
         assertEquals(ExpectedArray, ReceivedArray);
-        
+
     }
-    
-    @Test 
+
+    @Test
     public void ErrorCasesTest() {
-		Solution.clearTables();
-    	Vaccine a = new Vaccine();
-    	a.setCost(200);
-    	a.setId(8788);
-    	a.setName("corona Vaccine");
-    	a.setProductivity(30);
-    	a.setUnits(-100);
-    	ReturnValue ret = Solution.addVaccine(a);
+        Solution.clearTables();
+        Vaccine a = new Vaccine();
+        a.setCost(200);
+        a.setId(8788);
+        a.setName("corona Vaccine");
+        a.setProductivity(30);
+        a.setUnits(-100);
+        ReturnValue ret = Solution.addVaccine(a);
         assertEquals(BAD_PARAMS, ret);
-        
+
         a.setUnits(100);
         ret = Solution.addVaccine(a);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineSold(8788, 10);
         assertEquals(OK, ret);
 
         ret = Solution.vaccineSold(8788, 5);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineProduced(8788, 5);
         assertEquals(OK, ret);
-        
+
         ret = Solution.vaccineProduced(8788, -1);
         assertEquals(BAD_PARAMS, ret);
-        
+
         ret = Solution.vaccineProduced(8788, 0);
         assertEquals(OK, ret);
-        
+
         Boolean BoolRet = Solution.isLabPopular(-1);
         assertEquals(false, BoolRet);
-        
+
         BoolRet = Solution.isLabPopular(99998);
         assertEquals(false, BoolRet);
-        
+
         Integer expectedInt = 0;
         Integer IntRet = Solution.getIncomeFromVaccine(-1);
         assertEquals(expectedInt, IntRet);
+    }
+
+    @Test
+    public void ErrorOrderTest() {
+        Solution.clearTables();
+
+        Lab l_a = new Lab();
+        l_a.setId(1);
+        l_a.setName("Technion");
+        l_a.setCity("Haifa");
+        l_a.setIsActive(true);
+        ReturnValue ret = Solution.addLab(l_a);
+        assertEquals(OK, ret);
+
+        Lab l_b = new Lab();
+        l_b.setId(1);
+        l_b.setName("Technion");
+        l_b.setCity(null);
+        l_b.setIsActive(true);
+        ret = Solution.addLab(l_b);
+        assertEquals(BAD_PARAMS, ret);
+
+        Lab l_c = new Lab();
+        l_c.setId(1);
+        l_c.setName("Technion");
+        l_c.setCity("Haifa");
+        l_c.setIsActive(true);
+        ret = Solution.addLab(l_c);
+        assertEquals(ALREADY_EXISTS, ret);
+
+        Employee e_a = new Employee();
+        e_a.setId(1);
+        e_a.setName("joseph");
+        e_a.setCity("Nazareth");
+        ret = Solution.addEmployee(e_a);
+        assertEquals(OK, ret);
+
+        Employee e_b = new Employee();
+        e_b.setId(1);
+        e_b.setName(null);
+        e_b.setCity("Israel");
+        ret = Solution.addEmployee(e_b);
+        assertEquals(BAD_PARAMS, ret);
+
+        Employee e_c = new Employee();
+        e_c.setId(1);
+        e_c.setName("Guy");
+        e_c.setCity("Israel");
+        ret = Solution.addEmployee(e_c);
+        assertEquals(ALREADY_EXISTS, ret);
+
+        Vaccine v_a = new Vaccine();
+        v_a.setCost(200);
+        v_a.setId(1);
+        v_a.setName("corona Vaccine");
+        v_a.setProductivity(30);
+        v_a.setUnits(100);
+        ret = Solution.addVaccine(v_a);
+        assertEquals(OK, ret);
+
+        Vaccine v_b = new Vaccine();
+        v_b.setCost(200);
+        v_b.setId(1);
+        v_b.setName(null);
+        v_b.setProductivity(30);
+        v_b.setUnits(100);
+        ret = Solution.addVaccine(v_b);
+        assertEquals(BAD_PARAMS, ret);
+
+        Vaccine v_c = new Vaccine();
+        v_c.setCost(200);
+        v_c.setId(1);
+        v_c.setName("corona Vaccine");
+        v_c.setProductivity(30);
+        v_c.setUnits(100);
+        ret = Solution.addVaccine(v_c);
+        assertEquals(ALREADY_EXISTS, ret);
+
+        l_b = new Lab();
+        l_b.setId(2);
+        l_b.setName("Technion");
+        l_b.setCity("China");
+        l_b.setIsActive(true);
+        ret = Solution.addLab(l_b);
+        assertEquals(OK, ret);
+
+        e_b = new Employee();
+        e_b.setId(2);
+        e_b.setName("Beni");
+        e_b.setCity("Israel");
+        ret = Solution.addEmployee(e_b);
+        assertEquals(OK, ret);
+
+        v_b = new Vaccine();
+        v_b.setCost(200);
+        v_b.setId(2);
+        v_b.setName("Hissun");
+        v_b.setProductivity(30);
+        v_b.setUnits(100);
+        ret = Solution.addVaccine(v_b);
+        assertEquals(OK, ret);
+
+        ret = Solution.employeeJoinLab(3,3,-500);
+        assertEquals(BAD_PARAMS, ret);
+        ret = Solution.employeeJoinLab(1,3,-500);
+        assertEquals(BAD_PARAMS, ret);
+        ret = Solution.employeeJoinLab(3,1,-500);
+        assertEquals(BAD_PARAMS, ret);
+        ret = Solution.employeeJoinLab(1,1,-500);
+        assertEquals(BAD_PARAMS, ret);
+        ret = Solution.employeeJoinLab(3,3,7000);
+        assertEquals(NOT_EXISTS, ret);
+        ret = Solution.employeeJoinLab(1,3,7000);
+        assertEquals(NOT_EXISTS, ret);
+        ret = Solution.employeeJoinLab(3,1,7000);
+        assertEquals(NOT_EXISTS, ret);
+        ret = Solution.employeeJoinLab(1,1,7000);
+        assertEquals(OK, ret);
+        ret = Solution.employeeJoinLab(1,1,-7000);
+        assertEquals(BAD_PARAMS, ret);
+        ret = Solution.employeeLeftLab(1,1);
+        assertEquals(OK, ret);
+
+        ret = Solution.vaccineProduced(3, -5);
+        assertEquals(BAD_PARAMS, ret);
+
+        ret = Solution.deleteLab(l_a);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteLab(l_b);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteEmployee(e_a);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteEmployee(e_b);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteVaccine(v_a);
+        assertEquals(OK, ret);
+
+        ret = Solution.deleteVaccine(v_b);
+        assertEquals(OK, ret);
     }
 
 }

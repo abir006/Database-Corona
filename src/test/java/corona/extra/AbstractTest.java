@@ -1,4 +1,4 @@
-package corona.extra;
+package extra;
 
 import corona.business.Employee;
 import corona.business.Lab;
